@@ -1,1 +1,8 @@
+# ignore office files
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.ppt
+*.pptx
 
