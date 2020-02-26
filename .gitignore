@@ -6,3 +6,10 @@
 *.ppt
 *.pptx
 
+# ignore image files
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.gif
+*.webp
