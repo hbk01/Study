@@ -13,3 +13,10 @@
 *.bmp
 *.gif
 *.webp
+
+!*.assets/*.png
+!*.assets/*.jpg
+!*.assets/*.jpeg
+!*.assets/*.bmp
+!*.assets/*.gif
+!*.assets/*.webp
