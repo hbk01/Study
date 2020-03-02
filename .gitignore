@@ -14,6 +14,10 @@
 *.gif
 *.webp
 
+# ignore exec files
+gh-md-toc
+gen.sh
+
 !*.assets/*.png
 !*.assets/*.jpg
 !*.assets/*.jpeg
