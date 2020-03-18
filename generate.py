@@ -95,22 +95,17 @@ def generate(path, out, depth=4):
 
 
 def rename_list(rename):
-    # result = [
-            # v + "-" + str(rename[:i].count(v) + 1)
-            # if rename.count(v) > 1 else v for i, v in enumerate(rename)
-    # ]
-    r = []
+    result = []
     for i, v in enumerate(rename):
         if rename.count(v) > 1:
             # has repeat item.
-            print(i, v, rename[:i].count(v))
             if rename[:i].count(v) == 0:
-                r.append(v)
+                result.append(v)
             else:
-                r.append(v + "-" + str(rename[:i].count(v)))
+                result.append(v + "-" + str(rename[:i].count(v)))
         else:
-            r.append(v)
-    return r
+            result.append(v)
+    return result
 
 
 def clean_link(string):
