@@ -56,8 +56,6 @@ def generate(path, out, depth=4):
 
         for line in lines:
             title_level = len(line[0:line.find(" ")])
-            if int(title_level) > depth:
-                continue
             title = line[title_level + 1:]
             index[i] = title + "@" + str(title_level)
             i += 1
@@ -87,19 +85,24 @@ def generate(path, out, depth=4):
             repeat[i] = value[:value.find("#")] + "#" + renamed[i] + ")"
 
         for link in repeat:
-            f.write(link)
-            f.write(os.linesep)
+            title_level = len(link[:link.find(" ")])
+            if int(title_level) <= depth:
+                f.write(link)
+                f.write(os.linesep)
 
 
 def rename_list(rename):
-    result = [v + "-" + str(rename[:i].count(v) + 1) if rename.count(v) > 1 else v for i, v in enumerate(rename)]
+    result = [
+            v + "-" + str(rename[:i].count(v) + 1)
+            if rename.count(v) > 1 else v for i, v in enumerate(rename)
+    ]
     return result
 
 
 def clean_link(string):
     result = string.replace(" ", "-").lower()
     clear = [
-        "（", "）", "、", "/", ".", "？"
+        "（", "）", "、", "/", ".", "？", "。"
     ]
     for c in clear:
         result = result.replace(c, "")
