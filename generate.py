@@ -34,6 +34,7 @@ def main():
     select = input("Push to github and gitee? (y/n)")
     if select == "y":
         msg = input("Commit Message: ")
+        print("-------------------------------")
         os.system("git add .")
         os.system("git commit -m %s" % msg)
         print("-------------------------------")
