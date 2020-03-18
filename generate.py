@@ -20,7 +20,10 @@ def main():
     ]
     temp = "temp.md"
     out = "目录.md"
-    os.remove(directory + out)
+    try:
+        os.remove(directory + out)
+    except IOError:
+        pass
     print("-------------------------------")
     for index, i in enumerate(src):
         print("Generator [%d/%d] %s ..." % (index + 1, len(src), i))
@@ -86,17 +89,28 @@ def generate(path, out, depth=4):
 
         for link in repeat:
             title_level = len(link[:link.find(" ")])
-            if int(title_level) <= depth:
+            if int(title_level) < depth:
                 f.write(link)
                 f.write(os.linesep)
 
 
 def rename_list(rename):
-    result = [
-            v + "-" + str(rename[:i].count(v) + 1)
-            if rename.count(v) > 1 else v for i, v in enumerate(rename)
-    ]
-    return result
+    # result = [
+            # v + "-" + str(rename[:i].count(v) + 1)
+            # if rename.count(v) > 1 else v for i, v in enumerate(rename)
+    # ]
+    r = []
+    for i, v in enumerate(rename):
+        if rename.count(v) > 1:
+            # has repeat item.
+            print(i, v, rename[:i].count(v))
+            if rename[:i].count(v) == 0:
+                r.append(v)
+            else:
+                r.append(v + "-" + str(rename[:i].count(v)))
+        else:
+            r.append(v)
+    return r
 
 
 def clean_link(string):
