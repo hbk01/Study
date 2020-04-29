@@ -4,6 +4,7 @@
 __author__ = "hbk"
 __email__ = "3243430237@qq.com"
 __github__ = "https://github.com/hbk01/Study"
+__gitee__ = "https://gitee.com/hbk01/Study"
 
 import os
 from collections import OrderedDict
