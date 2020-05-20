@@ -17,6 +17,7 @@ def main():
         "药学文献检索.md",
         "药学综合知识与技能.md",
         "医药商品经营与管理.md",
+        "中药炮制技术.md",
         "计算机二级基础.md"
     ]
     temp = "temp.md"
@@ -29,7 +30,7 @@ def main():
     for index, i in enumerate(src):
         print("Generator [%d/%d] %s ..." % (index + 1, len(src), i))
         generate(directory + i, directory + temp)
-        with open(directory + temp, "r") as t, open(directory + out, "a") as f:
+        with open(directory + temp, "r", encoding="utf-8") as t, open(directory + out, "a", encoding="utf-8") as f:
             f.writelines(t.readlines())
     os.remove(directory + temp)
     print("-------------------------------")
@@ -49,7 +50,7 @@ def main():
 
 def generate(path, out, depth=4):
     index = OrderedDict()
-    with open(path, "r") as f:
+    with open(path, "r", encoding="utf-8") as f:
         lines = []
         i = 0
 
@@ -64,7 +65,7 @@ def generate(path, out, depth=4):
             index[i] = title + "@" + str(title_level)
             i += 1
 
-    with open(out, "w") as f:
+    with open(out, "w", encoding="utf-8") as f:
         filename = os.path.split(path)[1]
         # write file to title
         f.write("# " + filename[:len(filename) - 3])
