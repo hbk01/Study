@@ -93,7 +93,11 @@ def generate(path, out, depth=4):
             title_level = len(link[:link.find(" ")])
             if int(title_level) < depth:
                 f.write(link)
-                f.write(os.linesep)
+                # fix: Linux and Windows line separator inconsistency bug.
+                if os.name == "nt":
+                    f.write("\r")
+                else:
+                    f.write(os.linesep)
 
 
 def rename_list(rename):
@@ -121,5 +125,8 @@ def clean_link(string):
 
 
 if __name__ == "__main__":
+    # print("hello")
+    # print("world")
+    # print(os.name)
     main()
     pass
