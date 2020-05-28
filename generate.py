@@ -18,6 +18,7 @@ def main():
         "药学综合知识与技能.md",
         "医药商品经营与管理.md",
         "中药炮制技术.md",
+        "药品生物测定技术.md",
         "计算机二级基础.md"
     ]
     temp = "temp.md"
@@ -34,20 +35,20 @@ def main():
             f.writelines(t.readlines())
     os.remove(directory + temp)
     print("-------------------------------")
-    os.system("git status")
+    runCommand("git status")
     print("-------------------------------")
     select = input("Push to github and gitee? (y/n)")
     if select == "y":
         msg = input("Commit Message: ")
         print("-------------------------------")
-        os.system("git add .")
-        os.system("git commit -m %s" % msg)
+        runCommand("git commit -am '%s'" % msg)
         print("-------------------------------")
-        os.system("git push gitee")
+        runCommand("git push gitee")
         print("-------------------------------")
-        os.system("git push github")
+        runCommand("git push github")
 
 
+# {{{
 def generate(path, out, depth=4):
     index = OrderedDict()
     with open(path, "r", encoding="utf-8") as f:
@@ -98,6 +99,7 @@ def generate(path, out, depth=4):
                     f.write("\r")
                 else:
                     f.write(os.linesep)
+# }}}
 
 
 def rename_list(rename):
@@ -124,9 +126,11 @@ def clean_link(string):
     return result
 
 
+def runCommand(command):
+    print("run: %s" % command)
+    os.system(command)
+
+
 if __name__ == "__main__":
-    # print("hello")
-    # print("world")
-    # print(os.name)
     main()
     pass
