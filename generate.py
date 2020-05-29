@@ -48,7 +48,7 @@ def main():
     if select == "y" or select == "":
         msg = input("Commit Message: ")
         print("-------------------------------")
-        runCommand("git commit -m '%s'" % msg)
+        runCommand("git commit -m \"%s\"" % msg)
         print("-------------------------------")
         runCommand("git push gitee")
         print("-------------------------------")
