@@ -38,11 +38,17 @@ def main():
     print("-------------------------------")
     runCommand("git status")
     print("-------------------------------")
+    add = input("Add all files to git? (y/n)")
+    if add == "y" or add == "":
+        runCommand("git add .")
+    print("-------------------------------")
+    runCommand("git status")
+    print("-------------------------------")
     select = input("Push to github and gitee? (y/n)")
-    if select == "y":
+    if select == "y" or select == "":
         msg = input("Commit Message: ")
         print("-------------------------------")
-        runCommand("git commit -am '%s'" % msg)
+        runCommand("git commit -m '%s'" % msg)
         print("-------------------------------")
         runCommand("git push gitee")
         print("-------------------------------")
@@ -128,7 +134,7 @@ def clean_link(string):
 
 
 def runCommand(command):
-    print("run: %s" % command)
+    print("run: \033[31m%s\033[0m" % command)
     os.system(command)
 
 
