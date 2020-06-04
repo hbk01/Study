@@ -41,6 +41,8 @@ def main():
     add = input("Add all files to git? (y/n)")
     if add == "y" or add == "":
         runCommand("git add .")
+    else:
+        exit(0)
     print("-------------------------------")
     runCommand("git status")
     print("-------------------------------")
