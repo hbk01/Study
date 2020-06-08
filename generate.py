@@ -49,7 +49,6 @@ def main():
     select = input("Push to github and gitee? (y/n)")
     if select == "y" or select == "":
         msg = input("Commit Message: ")
-        print("-------------------------------")
         runCommand("git commit -m \"%s\"" % msg)
         print("-------------------------------")
         runCommand("git push gitee")
